@@ -20,22 +20,22 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
         tk.add_public_directory(config, 'public')
 
     def info(self):
-        return {'name': tk._('Markdown'),
-                'icon': 'file-text-o',
-                'filterable': False,
-                'iframed': False,}
+        return {
+            'name': tk._('Markdown'),
+            'icon': 'file-text-o',
+            'filterable': False,
+            'iframed': False,
+        }
 
     def can_view(self, data_dict):
-        return data_dict['resource'].get('format') == 'text/markdown'
+        return data_dict['resource'].get('format', '').lower() in ('text/markdown', 'markdown', 'md')
 
     def setup_template_variables(self, context, data_dict):
         resource = data_dict['resource']
         resource_view = data_dict['resource_view']
 
-        resp = requests.get(resource.get('original_url') or resource.get('url'), stream=False, timeout=60)
+        resp = requests.get(resource.get('url'), stream=False, timeout=60)
         resp.raise_for_status()
-
-        logger.debug(resp.url)
 
         return {'resource': resource,
                 'resource_view': resource_view,
@@ -53,6 +53,7 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
         return {
             'markdown_to_html': markdown_to_html,
         }
+
 
 def markdown_to_html(content):
     html = markdown.markdown(
