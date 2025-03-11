@@ -1,5 +1,5 @@
 import ckan.plugins as plugins
-import ckan.plugins.toolkit as toolkit
+import ckan.plugins.toolkit as tk
 import logging
 
 import requests
@@ -16,11 +16,11 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
 
     # IConfigurer
     def update_config(self, config):
-        toolkit.add_template_directory(config, 'templates')
-        toolkit.add_public_directory(config, 'public')
+        tk.add_template_directory(config, 'templates')
+        tk.add_public_directory(config, 'public')
 
     def info(self):
-        return {'name': toolkit._('Markdown'),
+        return {'name': tk._('Markdown'),
                 'icon': 'file-text-o',
                 'filterable': False,
                 'iframed': False,}
@@ -51,5 +51,12 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
     # ITemplateHelpers
     def get_helpers(self):
         return {
-            'markdown_to_html': markdown.markdown
+            'markdown_to_html': markdown_to_html,
         }
+
+def markdown_to_html(content):
+    html = markdown.markdown(
+        content.strip(),
+        extensions=['extra', 'admonition', 'toc', 'codehilite', 'sane_lists', 'smarty', 'wikilinks']
+    )
+    return tk.literal(html)
