@@ -3,7 +3,7 @@ import ckan.plugins.toolkit as tk
 import logging
 
 import requests
-import mistune
+from markdown_it_pyrs import MarkdownIt
 
 
 logger = logging.getLogger(__name__)
@@ -56,5 +56,6 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
 
 
 def markdown_to_html(content):
-    html = mistune.html(content)
+    md = MarkdownIt("commonmark").enable("table")
+    html = md.render(content)
     return tk.literal(html)
