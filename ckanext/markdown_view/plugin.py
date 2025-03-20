@@ -3,7 +3,7 @@ import ckan.plugins.toolkit as tk
 import logging
 
 import requests
-import markdown
+import markdown2
 
 
 logger = logging.getLogger(__name__)
@@ -56,8 +56,8 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
 
 
 def markdown_to_html(content):
-    html = markdown.markdown(
-        content.strip(),
-        extensions=['extra', 'admonition', 'toc', 'codehilite', 'sane_lists', 'smarty', 'wikilinks']
+    html = markdown2.markdown(
+        content,
+        extras=['tables', 'fenced-code-blocks', 'cuddled-lists', 'target-blank-links', 'toc']
     )
     return tk.literal(html)
