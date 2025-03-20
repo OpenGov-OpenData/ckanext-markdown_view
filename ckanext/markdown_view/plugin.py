@@ -3,7 +3,7 @@ import ckan.plugins.toolkit as tk
 import logging
 
 import requests
-import markdown2
+import mistune
 
 
 logger = logging.getLogger(__name__)
@@ -56,8 +56,5 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
 
 
 def markdown_to_html(content):
-    html = markdown2.markdown(
-        content,
-        extras=['target-blank-links']
-    )
+    html = mistune.html(content)
     return tk.literal(html)
