@@ -58,6 +58,6 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
 def markdown_to_html(content):
     html = markdown2.markdown(
         content,
-        extras=['tables', 'fenced-code-blocks', 'cuddled-lists', 'target-blank-links', 'toc']
+        extras=['target-blank-links']
     )
     return tk.literal(html)
