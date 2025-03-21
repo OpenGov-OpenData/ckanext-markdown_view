@@ -1,0 +1,20 @@
+markdown_view_css:
+  contents:
+    - markdown_view.css
+  output: md_view_assets/%(version)s_markdown_view.css
+  filters: cssrewrite
+
+showdown_js:
+  contents:
+    - vendor/showdown.js
+  output: md_view_assets/%(version)s_showdown.js
+  filters: rjsmin
+
+md_view_js:
+  contents:
+    - md_view.js
+  output: md_view_assets/%(version)s_md_view.js
+  filters: rjsmin
+  extra:
+    preload:
+      - md_view_assets/showdown_js
