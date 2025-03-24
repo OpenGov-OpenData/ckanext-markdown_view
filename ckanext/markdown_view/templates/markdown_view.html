@@ -1,3 +1,7 @@
-{% asset 'md_view_assets/md_view_js' %}
-
-<div id="md_view_html" data-resource-url="{{ resource_url }}"></div>
+{% set size = 512000  %}
+{% if resource['Size'] < size %}
+    {% asset 'md_view_assets/md_view_js' %}
+    <div id="md_view_html" data-resource-url="{{ resource_url }}"></div>
+{% else %}
+    <div class="alert alert-warning">File is too large to be displayed. Please keep file size under {{ size }} symbols.</div>
+{% endif %}

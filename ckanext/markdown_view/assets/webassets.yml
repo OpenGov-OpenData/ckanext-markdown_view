@@ -4,10 +4,22 @@ markdown_view_css:
   output: md_view_assets/%(version)s_markdown_view.css
   filters: cssrewrite
 
-showdown_js:
+markdown_it:
   contents:
-    - vendor/showdown.js
-  output: md_view_assets/%(version)s_showdown.js
+    - vendor/markdown-it.min.js
+  output: md_view_assets/%(version)s_markdown_it.js
+  filters: rjsmin
+
+markdown_it_attrs:
+  contents:
+    - vendor/markdown-it-attrs.js
+  output: md_view_assets/%(version)s_markdown_it_attrs.js
+  filters: rjsmin
+
+markdown_it_footnote:
+  contents:
+    - vendor/markdown-it-footnote.min.js
+  output: md_view_assets/%(version)s_markdown_it_footnote.js
   filters: rjsmin
 
 md_view_js:
@@ -17,4 +29,6 @@ md_view_js:
   filters: rjsmin
   extra:
     preload:
-      - md_view_assets/showdown_js
+      - md_view_assets/markdown_it
+      - md_view_assets/markdown_it_attrs
+      - md_view_assets/markdown_it_footnote
