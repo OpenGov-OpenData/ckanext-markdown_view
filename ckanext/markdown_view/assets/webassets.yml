@@ -1,0 +1,34 @@
+markdown_view_css:
+  contents:
+    - markdown_view.css
+  output: md_view_assets/%(version)s_markdown_view.css
+  filters: cssrewrite
+
+markdown_it:
+  contents:
+    - vendor/markdown-it.min.js
+  output: md_view_assets/%(version)s_markdown_it.js
+  filters: rjsmin
+
+markdown_it_attrs:
+  contents:
+    - vendor/markdown-it-attrs.js
+  output: md_view_assets/%(version)s_markdown_it_attrs.js
+  filters: rjsmin
+
+markdown_it_footnote:
+  contents:
+    - vendor/markdown-it-footnote.min.js
+  output: md_view_assets/%(version)s_markdown_it_footnote.js
+  filters: rjsmin
+
+md_view_js:
+  contents:
+    - md_view.js
+  output: md_view_assets/%(version)s_md_view.js
+  filters: rjsmin
+  extra:
+    preload:
+      - md_view_assets/markdown_it
+      - md_view_assets/markdown_it_attrs
+      - md_view_assets/markdown_it_footnote

@@ -1,0 +1,11 @@
+/* Hide entire Description block */
+.form-group.control-full label[for="field-description"],
+.form-group.control-full #field-description,
+.form-group.control-full .editor {
+  display: none !important;
+}
+
+/* Hide Filters block */
+.form-group.control-filters.control-select {
+  display: none !important;
+}
