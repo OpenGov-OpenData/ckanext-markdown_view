@@ -2,7 +2,6 @@ markdown_view_css:
   contents:
     - markdown_view.css
   output: md_view_assets/%(version)s_markdown_view.css
-  filters: cssrewrite
 
 markdown_it:
   contents:
