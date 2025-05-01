@@ -1,1 +1,5 @@
+{% import 'macros/form.html' as form %}
+
 {% asset 'md_view_assets/markdown_view_css' %}
+
+{{ form.input('page_url', id='field-page_url', label=_('Markdown Page url'), placeholder=_('eg. http://example.com  (if blank uses resource url)'), value=data.page_url, error=errors.page_url, classes=['control-full', 'control-large']) }}
