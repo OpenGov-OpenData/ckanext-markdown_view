@@ -4,6 +4,9 @@ import logging
 
 
 logger = logging.getLogger(__name__)
+ignore_empty = tk.get_validator('ignore_empty')
+unicode_safe = tk.get_validator('unicode_safe')
+url_validator = tk.get_validator('url_validator')
 
 
 class MarkdownViewPlugin(plugins.SingletonPlugin):
@@ -21,6 +24,7 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
             'icon': 'file-text-o',
             'filterable': False,
             'iframed': False,
+            'schema': {'page_url': [ignore_empty, unicode_safe, url_validator]},
         }
 
     def can_view(self, data_dict):
