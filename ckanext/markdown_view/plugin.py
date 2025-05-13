@@ -55,4 +55,4 @@ def url_to_md_file(value):
     elif value.endswith('.md'):
         return value
     else:
-        raise tk.Invalid(tk._('Url should point to markdown file (endswith .md)'))
+        raise tk.Invalid(tk._('Url should point to a markdown file (ends with .md)'))
