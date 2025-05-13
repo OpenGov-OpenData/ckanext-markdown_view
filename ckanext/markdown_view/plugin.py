@@ -24,11 +24,14 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
             'icon': 'file-text-o',
             'filterable': False,
             'iframed': False,
-            'schema': {'page_url': [ignore_empty, unicode_safe, url_validator, url_to_md_file]},
+            'always_available': True,
+            'schema': {
+                'page_url': [unicode_safe, url_validator, url_to_md_file]
+            },
         }
 
     def can_view(self, data_dict):
-        return True
+        return data_dict.get('resource', {}).get('format', '').lower() in ('text/markdown', 'markdown', 'md')
 
     def setup_template_variables(self, context, data_dict):
         resource = data_dict['resource']
@@ -47,9 +50,9 @@ class MarkdownViewPlugin(plugins.SingletonPlugin):
 
 
 def url_to_md_file(value):
-    if value:
-        if value.endswith('.md'):
-            return value
-        else:
-            raise tk.Invalid(tk._('Url should point to markdown file (endswith .md)'))
-    return value
+    if not value:
+        return None
+    elif value.endswith('.md'):
+        return value
+    else:
+        raise tk.Invalid(tk._('Url should point to markdown file (endswith .md)'))
