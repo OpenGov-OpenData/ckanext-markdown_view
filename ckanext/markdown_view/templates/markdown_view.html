@@ -1,2 +1,10 @@
 {% asset 'md_view_assets/md_view_js' %}
-<div id="md_view_html" data-resource-url="{{ resource_view.get('page_url', resource_url) }}"></div>
+
+{% set page_url = resource_view.get('page_url') %}
+{% if page_url and page_url.endswith('.md') %}
+    <div id="md_view_html" data-resource-url="{{ page_url }}"></div>
+{% elif resource_url.endswith('.md') %}
+    <div id="md_view_html" data-resource-url="{{ resource_url }}"></div>
+{% else %}
+    <div class="alert alert-warning" role="alert">This Resource cannot be processed by markdown view.</div>
+{% endif %}
