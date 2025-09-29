@@ -9,6 +9,7 @@ function render_md(url, target_element) {
             });
             converter.use(window.markdownitFootnote);
             converter.use(window.markdownItAttrs);
+            converter.use(window.markdownItAnchor);
             html= converter.render(text);
             target_element.innerHTML = html;
   })

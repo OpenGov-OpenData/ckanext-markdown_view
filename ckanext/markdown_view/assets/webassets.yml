@@ -15,6 +15,12 @@ markdown_it_attrs:
   output: md_view_assets/%(version)s_markdown_it_attrs.js
   filters: rjsmin
 
+markdown_it_anchor:
+  contents:
+    - vendor/markdownItAnchor.umd.js
+  output: md_view_assets/%(version)s_markdown_it_anchor.js
+  filters: rjsmin
+
 markdown_it_footnote:
   contents:
     - vendor/markdown-it-footnote.min.js
@@ -31,3 +37,4 @@ md_view_js:
       - md_view_assets/markdown_it
       - md_view_assets/markdown_it_attrs
       - md_view_assets/markdown_it_footnote
+      - md_view_assets/markdown_it_anchor
