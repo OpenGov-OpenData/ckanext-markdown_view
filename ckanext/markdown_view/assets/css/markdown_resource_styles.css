@@ -1,0 +1,14 @@
+.label[data-format=md],
+.label[data-format*=markdown] {
+  background-color: #1A7EA3;
+}
+.format-label[data-format=md],
+.format-label[data-format*=markdown] {
+  width: 32px;
+  height: 35px;
+  background: url(/img/markdown_icon.png);
+  background-size: cover;
+  transform: unset;
+  top: 25px !important;
+  left: 25px !important;
+}
