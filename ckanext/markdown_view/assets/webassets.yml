@@ -1,7 +1,12 @@
 markdown_view_css:
   contents:
-    - markdown_view.css
+    - css/markdown_view.css
   output: md_view_assets/%(version)s_markdown_view.css
+
+markdown_resource_styles_css:
+  contents:
+    - css/markdown_resource_styles.css
+  output: md_view_assets/%(version)s_markdown_resource_styles.css
 
 markdown_it:
   contents:
